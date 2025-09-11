@@ -7,13 +7,13 @@
 -- Alter these lines to control which languages are written for place/streetnames
 --
 -- Preferred language can be (for example) "en" for English, "de" for German, or nil to use OSM's name tag:
-preferred_language = nil
+preferred_language = "de"
 -- This is written into the following vector tile attribute (usually "name:latin"):
 preferred_language_attribute = "name:latin"
 -- If OSM's name tag differs, then write it into this attribute (usually "name_int"):
 default_language_attribute = "name_int"
 -- Also write these languages if they differ - for example, { "de", "fr" }
-additional_languages = { }
+additional_languages = {"en"}
 --------
 
 -- Enter/exit Tilemaker
@@ -212,6 +212,19 @@ function node_function()
 		Layer("water_name", false)
 		SetNameAttributes()
 		return
+	end
+	if natural=="tree" then
+		Layer("natural")
+		Attribute("class", natural)
+		Attribute("name:latin", Find("genus"))
+		Attribute("operator", Find("operator"))
+		Attribute("genus", Find("genus"))
+		Attribute("genus:de", Find("genus:de"))
+		Attribute("species", Find("species"))
+		Attribute("species:de", Find("species:de"))
+		Attribute("taxon:cultivar", Find("taxon:cultivar"))
+		Attribute("species:wikidata", Find("species:wikidata"))
+		Attribute("taxon:wikidata", Find("taxon:wikidata"))
 	end
 end
 

@@ -5010,6 +5010,99 @@
             "text-halo-width":2,
             "text-halo-color":"rgba(255,255,255,0.8)"
          }
+      },
+      {
+        "id": "Tree symbols noname",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"],
+	  ["!has", "species"]
+        ],
+        "layout":{
+           "icon-image":"tree-circle-gray",
+           "icon-anchor": "bottom",
+           "icon-size": 0.2,
+           "icon-allow-overlap": true,
+           "visibility":"visible"
+        },
+        "minzoom":12
+      },
+      {
+        "id": "Tree symbols if named",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"],
+	  ["has", "species"]
+        ],
+        "layout":{
+           "icon-image":"tree-circle",
+           "icon-anchor": "bottom",
+           "icon-size": 0.2,
+           "icon-allow-overlap": true,
+           "visibility":"visible"
+        },
+        "minzoom":12
+      },
+      {
+        "id": "Tree name",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"]
+        ],
+        "layout":{
+           "text-font":[
+              "Noto Sans Bold"
+           ],
+           "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"]],
+           "text-size":14,
+           "text-max-width":6.25,
+           "text-transform":"uppercase",
+	   "text-offset":[0, 1],
+           "text-allow-overlap": true,
+           "visibility":"visible"
+        },
+        "paint":{
+           "text-halo-blur":1,
+           "text-color":"#334",
+           "text-halo-width":2,
+           "text-halo-color":"rgba(255,255,255,0.8)"
+        },
+        "minzoom":16
+      },
+      {
+        "id": "Tree year",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"]
+        ],
+        "layout":{
+           "text-font":[
+              "Noto Sans Bold"
+           ],
+           "text-field": "{taxon:wikidata}",
+           "text-size":14,
+           "text-max-width":6.25,
+           "text-transform":"uppercase",
+           "text-allow-overlap": true,
+	   "text-offset":[0, 3],
+           "visibility":"visible"
+        },
+        "paint":{
+           "text-color":"#922"
+        },
+        "minzoom":16
       }
    ]
 }

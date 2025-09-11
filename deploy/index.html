@@ -19,6 +19,33 @@
 <script>
     const protocol = new pmtiles.Protocol();
     maplibregl.addProtocol("pmtiles", protocol.tile);
+
+    fetch('Circled_dot.svg')
+    .then(response => response.text())
+    .then(svgText => {
+      // Convert SVG text to an image object
+      const svg = new Blob([svgText], {type: 'image/svg+xml'});
+      const url = URL.createObjectURL(svg);
+      const img = new Image();
+      img.onload = function() {
+        map.addImage('tree-circle', img);
+        URL.revokeObjectURL(url);
+      };
+      img.src = url;
+    });
+    fetch('Circled_dot_gray.svg')
+    .then(response => response.text())
+    .then(svgText => {
+      // Convert SVG text to an image object
+      const svg = new Blob([svgText], {type: 'image/svg+xml'});
+      const url = URL.createObjectURL(svg);
+      const img = new Image();
+      img.onload = function() {
+        map.addImage('tree-circle-gray', img);
+        URL.revokeObjectURL(url);
+      };
+      img.src = url;
+    });
     
     var map = new maplibregl.Map({
         container: 'map', // container id

@@ -7,6 +7,7 @@
 		"poi_detail":       { "minzoom": 14, "maxzoom": 14, "write_to": "poi"},
 
 		"housenumber":      { "minzoom": 14, "maxzoom": 14 },
+		"natural":          { "minzoom": 8, "maxzoom": 14 },
 
 		"waterway":         { "minzoom":  8,  "maxzoom": 14, "simplify_below": 12, "simplify_level": 0.0003, "simplify_ratio": 2 },
 		"waterway_detail":  { "minzoom": 12,  "maxzoom": 14, "write_to": "waterway" },
