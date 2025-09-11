@@ -4991,7 +4991,7 @@
            "text-font":[
               "Noto Sans Bold"
            ],
-           "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"], ["get", "name"], ["get", "description"]],
+           "text-field": ["coalesce", ["get", "name"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"], ["get", "description"]],
            "text-size": {"base": 1, "stops": [[18, 5], [20, 13]]},
            "text-max-width":6.25,
            "text-transform":"uppercase",
@@ -5008,7 +5008,7 @@
         "minzoom":18
       },
       {
-        "id": "Tree year",
+        "id": "Tree taxon",
         "type": "symbol",
         "source": "openmaptiles",
         "source-layer": "natural",
@@ -5020,12 +5020,10 @@
            "text-font":[
               "Noto Sans Bold"
            ],
-           "text-field": "{taxon:wikidata}",
-           "text-size":14,
-           "text-max-width":6.25,
-           "text-transform":"uppercase",
+           "text-field": "{taxon:cultivar}",
+           "text-size":12,
            "text-allow-overlap": true,
-	   "text-offset":[0, 3],
+	   "text-offset":[0, 2.4],
            "visibility":"visible"
         },
         "paint":{

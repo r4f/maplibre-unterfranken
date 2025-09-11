@@ -49,7 +49,7 @@ INVALID_ZOOM = 99
 aerodromeValues = Set { "international", "public", "regional", "military", "private" }
 pavedValues = Set { "paved", "asphalt", "cobblestone", "concrete", "concrete:lanes", "concrete:plates", "metal", "paving_stones", "sett", "unhewn_cobblestone", "wood" }
 unpavedValues = Set { "unpaved", "compacted", "dirt", "earth", "fine_gravel", "grass", "grass_paver", "gravel", "gravel_turf", "ground", "ice", "mud", "pebblestone", "salt", "sand", "snow", "woodchips" }
-treeAttributes = {"genus", "genus:de", "species", "species:de", "taxon:cultivar", "species:wikidata", "taxon:wikidata", "operator", "name", "description", "start_date", }
+treeAttributes = {"name", "genus", "genus:de", "species", "species:de", "taxon:cultivar", "species:wikidata", "taxon:wikidata", "operator", "description", "start_date", }
 
 -- Process node tags
 
@@ -222,11 +222,45 @@ function node_function()
 		-- "species"=="Malus"
 		-- "Kulturapfel" -> "Apfel"
 
+		local display_name = ""
+		local species = Find("species")
+		local species_de = Find("species:de")
+		local genus = Find("genus")
+		local genus_de = Find("genus:de")
+		-- display_name = taxon_cultibar or species_de or species or genus_de or genus
+		if species_de ~= "" then display_name = species_de
+		elseif species ~= "" then display_name = species
+		elseif genus_de ~= "" then display_name = genus_de
+		elseif genus ~= "" then display_name = genus
+		end
+
 		for _,attr in ipairs(treeAttributes) do
 			if Holds(attr) then
+				--if display_name == "" then
+					-- display_name = Find(attr)
 				Attribute(attr, Find(attr))
 			end
 		end
+
+		if display_name == "Malus" or display_name == "Kulturapfel" or display_name == "Malus domestica" then
+			display_name = "Apfel"
+		end
+
+		if species == "Prunus cerasus" then display_name = "Sauerkirsche" end
+		if species == "Prunus armeniaca" then display_name = "Aprikose" end
+		if species == "Prunus cerasifera" then display_name = "Kirschpflaume" end
+		if species == "Prunus domestica" then display_name = "Pflaume" end
+		if species == "prunus domestica" then display_name = "Pflaume" end
+		if species == "Prunus avium" then display_name = "Süßkirsche" end
+		if species == "Prunus serrulata" then display_name = "Japanische Blütenkirsche" end
+		if genus == "Pyrus" then display_name = "Birne" end
+		if species == "Pyrus communis" then display_name = "Birne" end
+		if species == "Cydonia oblonga" then display_name = "Quitte" end
+		if species == "Cydonia vulgaris" then display_name = "Quitte" end
+		if genus == "Juglans" then display_name = "Walnuss" end
+		if species == "Juglans regia" then display_name = "Walnuss" end
+
+		Attribute("name", display_name)
 	end
 
 end
