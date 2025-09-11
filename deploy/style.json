@@ -5021,15 +5021,15 @@
               "Noto Sans Bold"
            ],
            "text-field": "{taxon:cultivar}",
-           "text-size":12,
+           "text-size": {"base": 1, "stops": [[18, 4], [20, 12]]},
            "text-allow-overlap": true,
 	   "text-offset":[0, 2.4],
            "visibility":"visible"
         },
         "paint":{
-           "text-color":"#922"
+           "text-color":"#976"
         },
-        "minzoom":20
+        "minzoom":18
       }
    ]
 }
