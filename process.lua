@@ -49,7 +49,7 @@ INVALID_ZOOM = 99
 aerodromeValues = Set { "international", "public", "regional", "military", "private" }
 pavedValues = Set { "paved", "asphalt", "cobblestone", "concrete", "concrete:lanes", "concrete:plates", "metal", "paving_stones", "sett", "unhewn_cobblestone", "wood" }
 unpavedValues = Set { "unpaved", "compacted", "dirt", "earth", "fine_gravel", "grass", "grass_paver", "gravel", "gravel_turf", "ground", "ice", "mud", "pebblestone", "salt", "sand", "snow", "woodchips" }
-treeAttributes = {"genus", "genus:de", "species", "species:de", "taxon:cultivar", "species:wikidata", "taxon:wikidata", "operator", "name", "description", }
+treeAttributes = {"genus", "genus:de", "species", "species:de", "taxon:cultivar", "species:wikidata", "taxon:wikidata", "operator", "name", "description", "start_date", }
 
 -- Process node tags
 
