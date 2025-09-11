@@ -3,6 +3,19 @@ name: Generate the pmtiles file.
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   create-pmtiles:
@@ -13,14 +26,30 @@ jobs:
     steps:
     - name: install download tool
       run: apt-get update && apt-get install -y wget
-    - name: Checkout repository
-      uses: actions/checkout@v3
     - name: Get latest regional osm file.
       run: |
         wget https://download.geofabrik.de/europe/liechtenstein-latest.osm.pbf
+    - name: Checkout repository
+      uses: actions/checkout@v3
     - name: Generate pmtiles
       run: |
         ls -l #for debugging
         /usr/src/app/tilemaker --input liechtenstein-latest.osm.pbf --output liechtenstein.pmtiles
         mv liechtenstein.pmtiles liechtenstein.pmtiles.gz
+    - name: Upload static files as artifact
+      id: deployment
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: /
 
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
