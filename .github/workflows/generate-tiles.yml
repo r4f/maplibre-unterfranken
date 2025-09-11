@@ -21,6 +21,6 @@ jobs:
     - name: Generate pmtiles
       run: |
         ls -l #for debugging
-        tilemaker --input liechtenstein-latest.osm.pbf --output liechtenstein.pmtiles
+        /usr/src/app/tilemaker --input liechtenstein-latest.osm.pbf --output liechtenstein.pmtiles
         mv liechtenstein.pmtiles liechtenstein.pmtiles.gz
 
