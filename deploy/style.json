@@ -5019,7 +5019,11 @@
         "filter": [
           "all",
           ["==", "class", "tree"],
-	  ["!has", "species"]
+	  [
+		"any",
+		["!has", "species"],
+		["==", "species", ""]
+	  ]
         ],
         "layout":{
            "icon-image":"tree-circle-gray",
@@ -5038,7 +5042,8 @@
         "filter": [
           "all",
           ["==", "class", "tree"],
-	  ["has", "species"]
+	  ["has", "species"],
+	  ["!=", "species", ""]
         ],
         "layout":{
            "icon-image":"tree-circle",
