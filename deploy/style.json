@@ -650,91 +650,11 @@
                   ]
                ]
             },
+            "fill-outline-color": {
+              "base": 1,
+              "stops": [[13, "hsl(26, 70%, 77%)"], [16, "hsl(26, 80%, 72%)"]]
+            },
             "fill-antialias":true
-         }
-      },
-      {
-         "id":"building-top",
-         "type":"fill",
-         "metadata":{
-            "mapbox:group":"1444849364238.8171"
-         },
-         "source":"openmaptiles",
-         "source-layer":"building",
-         "layout":{
-            "visibility":"visible"
-         },
-         "paint":{
-            "fill-translate":{
-               "base":1,
-               "stops":[
-                  [
-                     14,
-                     [
-                        0,
-                        0
-                     ]
-                  ],
-                  [
-                     16,
-                     [
-                        -2,
-                        -2
-                     ]
-                  ]
-               ]
-            },
-            "fill-outline-color":"#dfdbd7",
-            "fill-color":"#f2eae2",
-            "fill-opacity":{
-               "base":1,
-               "stops":[
-                  [
-                     13,
-                     0
-                  ],
-                  [
-                     16,
-                     1
-                  ]
-               ]
-            }
-         }
-      },
-      {
-         "id":"building-3d",
-         "type":"fill-extrusion",
-         "source":"openmaptiles",
-         "source-layer":"building",
-         "filter":[
-            "all",
-            [
-               "!has",
-               "hide_3d"
-            ]
-         ],
-         "paint":{
-            "fill-extrusion-base":{
-               "property":"render_min_height",
-               "type":"identity"
-            },
-            "fill-extrusion-color":[
-               "case",
-               [
-                  "has",
-                  "colour"
-               ],
-               [
-                  "get",
-                  "colour"
-               ],
-               "hsl(39, 41%, 86%)"
-            ],
-            "fill-extrusion-height":{
-               "property":"render_height",
-               "type":"identity"
-            },
-            "fill-extrusion-opacity":0.6
          }
       },
       {
@@ -5028,7 +4948,7 @@
         "layout":{
            "icon-image":"tree-circle-gray",
            "icon-anchor": "bottom",
-           "icon-size": 0.2,
+           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.3], [20, 0.7]]},
            "icon-allow-overlap": true,
            "visibility":"visible"
         },
@@ -5048,7 +4968,7 @@
         "layout":{
            "icon-image":"tree-circle",
            "icon-anchor": "bottom",
-           "icon-size": 0.2,
+           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.3], [20, 0.8]]},
            "icon-allow-overlap": true,
            "visibility":"visible"
         },
@@ -5068,7 +4988,7 @@
               "Noto Sans Bold"
            ],
            "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"], ["get", "name"], ["get", "description"]],
-           "text-size":14,
+           "text-size": {"base": 1, "stops": [[18, 5], [20, 13]]},
            "text-max-width":6.25,
            "text-transform":"uppercase",
 	   "text-offset":[0, 1],
@@ -5077,11 +4997,11 @@
         },
         "paint":{
            "text-halo-blur":1,
-           "text-color":"#334",
+           "text-color":"rgb(40,180,0)",
            "text-halo-width":2,
            "text-halo-color":"rgba(255,255,255,0.8)"
         },
-        "minzoom":16
+        "minzoom":18
       },
       {
         "id": "Tree year",
@@ -5107,7 +5027,7 @@
         "paint":{
            "text-color":"#922"
         },
-        "minzoom":16
+        "minzoom":20
       }
    ]
 }
