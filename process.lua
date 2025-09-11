@@ -213,19 +213,20 @@ function node_function()
 		SetNameAttributes()
 		return
 	end
+
 	if natural=="tree" then
 		Layer("natural")
 		Attribute("class", natural)
-		Attribute("name:latin", Find("genus"))
-		Attribute("operator", Find("operator"))
-		Attribute("genus", Find("genus"))
-		Attribute("genus:de", Find("genus:de"))
-		Attribute("species", Find("species"))
-		Attribute("species:de", Find("species:de"))
-		Attribute("taxon:cultivar", Find("taxon:cultivar"))
-		Attribute("species:wikidata", Find("species:wikidata"))
-		Attribute("taxon:wikidata", Find("taxon:wikidata"))
+
+		local treeAttributes = {"genus", "genus:de", "species", "species:de", "taxon:cultivar", "species:wikidata", "taxon:wikidata", "operator" }
+		
+		for _,attr in ipairs(treeAttributes) do
+			if Holds(attr) then
+				Attribute(attr, Find(attr))
+			end
+		end
 	end
+
 end
 
 -- Process way tags
