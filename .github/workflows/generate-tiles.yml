@@ -5,13 +5,13 @@ on:
     branches: [main]
 
 jobs:
-  build-and-publish:
+  create-pmtiles:
     runs-on: ubuntu-latest
 
+    steps:
     - name: Install tilemaker
       run: sudo apt install -y tilemaker
 
-    steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
