@@ -7,6 +7,8 @@ on:
 jobs:
   create-pmtiles:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/systemed/tilemaker:master
 
     steps:
     - name: Checkout repository
@@ -15,7 +17,6 @@ jobs:
       run: |
         wget https://download.geofabrik.de/europe/liechtenstein-latest.osm.pbf
     - name: Generate pmtiles
-      container: ghcr.io/systemed/tilemaker:master
       run: |
         ls -l #for debugging
         tilemaker --input liechtenstein-latest.osm.pbf --output liechtenstein.pmtiles
