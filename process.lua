@@ -49,6 +49,7 @@ INVALID_ZOOM = 99
 aerodromeValues = Set { "international", "public", "regional", "military", "private" }
 pavedValues = Set { "paved", "asphalt", "cobblestone", "concrete", "concrete:lanes", "concrete:plates", "metal", "paving_stones", "sett", "unhewn_cobblestone", "wood" }
 unpavedValues = Set { "unpaved", "compacted", "dirt", "earth", "fine_gravel", "grass", "grass_paver", "gravel", "gravel_turf", "ground", "ice", "mud", "pebblestone", "salt", "sand", "snow", "woodchips" }
+treeAttributes = {"genus", "genus:de", "species", "species:de", "taxon:cultivar", "species:wikidata", "taxon:wikidata", "operator", "name", "description", }
 
 -- Process node tags
 
@@ -218,8 +219,9 @@ function node_function()
 		Layer("natural")
 		Attribute("class", natural)
 
-		local treeAttributes = {"genus", "genus:de", "species", "species:de", "taxon:cultivar", "species:wikidata", "taxon:wikidata", "operator" }
-		
+		-- "species"=="Malus"
+		-- "Kulturapfel" -> "Apfel"
+
 		for _,attr in ipairs(treeAttributes) do
 			if Holds(attr) then
 				Attribute(attr, Find(attr))

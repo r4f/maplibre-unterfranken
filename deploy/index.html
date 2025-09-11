@@ -57,6 +57,30 @@
 		[10.905, 50.556],
 	]
     });
+    map.on('click', 'Tree name', function(e) {
+        // e.features contains all features at the click location
+        if (e.features.length > 0) {
+            const feature = e.features[0];
+            // Build HTML for popup from feature properties
+            let html = '<h3>' + (feature.properties['name'] || 'Tree') + '</h3>';
+            html += '<ul>';
+            for (const key in feature.properties) {
+                html += `<li><b>${key}</b>: ${feature.properties[key]}</li>`;
+            }
+            html += '</ul>';
+            // Show popup at clicked location
+            new maplibregl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(html)
+                .addTo(map);
+        }
+    });
+    map.on('mouseenter', 'Tree name', function() {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'Tree name', function() {
+        map.getCanvas().style.cursor = '';
+    });
 </script>
 
         </body>

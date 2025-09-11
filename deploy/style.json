@@ -5067,7 +5067,7 @@
            "text-font":[
               "Noto Sans Bold"
            ],
-           "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"]],
+           "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"], ["get", "name"], ["get", "description"]],
            "text-size":14,
            "text-max-width":6.25,
            "text-transform":"uppercase",
