@@ -1,0 +1,25 @@
+name: Generate the pmtiles file.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    - name: Install tilemaker
+      run: sudo apt install -y tilemaker
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Get latest regional osm file.
+      run: |
+        wget https://download.geofabrik.de/europe/germany/bayern/unterfranken-latest.osm.pbf
+
+    - name: Generate pmtiles
+      run: |
+        tilemaker --input unterfranken-latest.osm.pbf --output unterfranken.pmtiles && mv unterfranken.pmtiles unterfranken.pmtiles.gz
+
