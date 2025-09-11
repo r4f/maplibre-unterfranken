@@ -57,7 +57,7 @@
 		[10.905, 50.556],
 	]
     });
-    map.on('click', 'Tree name', function(e) {
+    map.on('click', 'Tree symbols if named', function(e) {
         // e.features contains all features at the click location
         if (e.features.length > 0) {
             const feature = e.features[0];
@@ -75,10 +75,10 @@
                 .addTo(map);
         }
     });
-    map.on('mouseenter', 'Tree name', function() {
+    map.on('mouseenter', 'Tree symbols if named', function() {
         map.getCanvas().style.cursor = 'pointer';
     });
-    map.on('mouseleave', 'Tree name', function() {
+    map.on('mouseleave', 'Tree symbols if named', function() {
         map.getCanvas().style.cursor = '';
     });
 </script>
