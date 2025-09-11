@@ -30,14 +30,11 @@ jobs:
       uses: actions/checkout@v3
     - name: Get latest regional osm file.
       run: |
-        wget https://download.geofabrik.de/europe/liechtenstein-latest.osm.pbf
+        wget https://download.geofabrik.de/europe/germany/bayern/unterfranken-latest.osm.pbf
     - name: Generate pmtiles
       run: |
-        ls -l #for debugging
-        /usr/src/app/tilemaker --input liechtenstein-latest.osm.pbf --output liechtenstein.pmtiles
-        mv liechtenstein.pmtiles deploy/map.pmtiles.gz
-        ls -l
-        pwd
+        /usr/src/app/tilemaker --input unterfranken-latest.osm.pbf --output unterfranken.pmtiles
+        mv unterfranken.pmtiles deploy/map.pmtiles.gz
     - name: Upload static files as artifact
       id: deployment
       uses: actions/upload-pages-artifact@v3
