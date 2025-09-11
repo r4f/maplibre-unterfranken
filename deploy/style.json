@@ -4939,11 +4939,10 @@
         "filter": [
           "all",
           ["==", "class", "tree"],
-	  [
-		"any",
-		["!has", "species"],
-		["==", "species", ""]
-	  ]
+	  ["!has", "species"],
+	  ["!has", "species:de"],
+	  ["!has", "genus"],
+	  ["!has", "genus:de"]
         ],
         "layout":{
            "icon-image":"tree-circle-gray",
@@ -4962,8 +4961,13 @@
         "filter": [
           "all",
           ["==", "class", "tree"],
-	  ["has", "species"],
-	  ["!=", "species", ""]
+	  [
+		"any",
+	  	["has", "species"],
+	  	["has", "species:de"],
+	  	["has", "genus"],
+	  	["has", "genus:de"]
+	  ]
         ],
         "layout":{
            "icon-image":"tree-circle",
