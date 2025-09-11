@@ -11,6 +11,8 @@ jobs:
       image: ghcr.io/systemed/tilemaker:master
 
     steps:
+    - name: install download tool
+      run: apt-get update && apt-get install -y wget
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Get latest regional osm file.
