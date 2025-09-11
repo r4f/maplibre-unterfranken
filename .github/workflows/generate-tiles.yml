@@ -9,19 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install tilemaker
-      run: sudo apt install -y tilemaker
-
     - name: Checkout repository
       uses: actions/checkout@v3
-
+      e
     - name: Get latest regional osm file.
       run: |
-        wget https://download.geofabrik.de/europe/germany/bayern/unterfranken-latest.osm.pbf
-
+        wget https://download.geofabrik.de/europe/liechtenstein-latest.osm.pbf
     - name: Generate pmtiles
+      container: ghcr.io/systemed/tilemaker:master
       run: |
         ls -l #for debugging
-        tilemaker --input unterfranken-latest.osm.pbf --output unterfranken.pmtiles
-        mv unterfranken.pmtiles unterfranken.pmtiles.gz
+        tilemaker --input liechtenstein-latest.osm.pbf --output liechtenstein.pmtiles
+        mv liechtenstein.pmtiles liechtenstein.pmtiles.gz
 
