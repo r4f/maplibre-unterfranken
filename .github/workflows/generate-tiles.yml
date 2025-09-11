@@ -36,6 +36,8 @@ jobs:
         ls -l #for debugging
         /usr/src/app/tilemaker --input liechtenstein-latest.osm.pbf --output liechtenstein.pmtiles
         mv liechtenstein.pmtiles deploy/liechtenstein.pmtiles.gz
+        ls -l
+        pwd
     - name: Upload static files as artifact
       id: deployment
       uses: actions/upload-pages-artifact@v3
