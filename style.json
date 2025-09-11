@@ -40,7 +40,7 @@
    },
   "sources": {
     "openmaptiles": {
-    "type": "vector", "url": "pmtiles://https://moi.sidechannel.de/09jt4/map.pmtiles"}
+    "type": "vector", "url": "pmtiles://https://r4f.github.io/maplibre-unterfranken/map.pmtiles"}
   },
    "sprite":"https://demotiles.maplibre.org/styles/osm-bright-gl-style/sprite",
    "glyphs":"https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
