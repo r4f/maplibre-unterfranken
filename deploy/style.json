@@ -4946,7 +4946,7 @@
         ],
         "layout":{
            "icon-image":"tree-circle-gray",
-           "icon-anchor": "bottom",
+           "icon-anchor": "center",
            "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.3], [20, 0.7]]},
            "icon-allow-overlap": true,
            "visibility":"visible"
