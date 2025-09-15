@@ -4460,6 +4460,131 @@
          "minzoom":0
       },
       {
+        "id": "Tree symbols noname",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"],
+	  ["!has", "species"],
+	  ["!has", "species:de"],
+	  ["!has", "genus"],
+	  ["!has", "genus:de"]
+        ],
+        "layout":{
+           "icon-image":"tree-circle-gray",
+           "icon-anchor": "center",
+           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.3], [20, 0.7]]},
+           "icon-allow-overlap": true,
+           "visibility":"visible"
+        },
+        "minzoom":12
+      },
+      {
+        "id": "Tree symbols if named",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"],
+	  [
+		"any",
+	  	["has", "species"],
+	  	["has", "species:de"],
+	  	["has", "genus"],
+	  	["has", "genus:de"]
+	  ]
+        ],
+        "layout":{
+           "icon-image": ["case", ["has", "symbol"], ["get", "symbol"], "tree-circle"],
+           "icon-anchor": "center",
+           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.6], [20, 0.8]]},
+           "icon-allow-overlap": true,
+           "visibility":"visible"
+        },
+        "minzoom":12
+      },
+      {
+        "id": "Tree name",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"]
+        ],
+        "layout":{
+           "text-font":[
+              "Noto Sans Bold"
+           ],
+           "text-field": ["coalesce", ["get", "name"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"], ["get", "description"]],
+           "text-size": {"base": 1, "stops": [[16, 5], [18, 8], [20, 15]]},
+           "text-max-width":6.25,
+           "text-transform":"uppercase",
+	   "text-offset":[0, 1.6],
+           "text-allow-overlap": true,
+           "visibility":"visible"
+        },
+        "paint":{
+           "text-halo-blur":1,
+           "text-color":"rgb(40,180,0)",
+           "text-halo-width":2,
+           "text-halo-color":"rgba(255,255,255,0.8)"
+        },
+        "minzoom":16
+      },
+      {
+        "id": "Tree taxon",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"]
+        ],
+        "layout":{
+           "text-font":[
+              "Noto Sans Bold"
+           ],
+           "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "start_date"]],
+           "text-size": {"base": 1, "stops": [[18, 4], [20, 12]]},
+           "text-allow-overlap": true,
+	   "text-offset": {"base": 1, "stops": [[18, [0, 4.5]],[19, [0, 3.6]], [20, [0, 4]]]},
+           "visibility":"visible"
+        },
+        "paint":{
+           "text-color":"#976"
+        },
+        "minzoom":18
+      },
+      {
+        "id": "Tree third line",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"],
+          ["has", "taxon:cultivar"]
+        ],
+        "layout":{
+           "text-font":[
+              "Noto Sans Bold"
+           ],
+           "text-field": "{start_date}",
+           "text-size": {"base": 1, "stops": [[18, 4], [20, 12]]},
+           "text-allow-overlap": true,
+	   "text-offset": {"base": 1, "stops": [[18, [0, 6.5]],[19, [0, 5.6]], [20, [0, 6]]]},
+           "visibility":"visible"
+        },
+        "paint":{
+           "text-color":"#976"
+        },
+        "minzoom":18
+      },
+      {
          "id":"place-other",
          "type":"symbol",
          "metadata":{
@@ -4519,6 +4644,7 @@
             "village"
          ],
          "layout":{
+           "text-allow-overlap": true,
             "text-font":[
                "Noto Sans Regular"
             ],
@@ -4930,131 +5056,6 @@
             "text-halo-width":2,
             "text-halo-color":"rgba(255,255,255,0.8)"
          }
-      },
-      {
-        "id": "Tree symbols noname",
-        "type": "symbol",
-        "source": "openmaptiles",
-        "source-layer": "natural",
-        "filter": [
-          "all",
-          ["==", "class", "tree"],
-	  ["!has", "species"],
-	  ["!has", "species:de"],
-	  ["!has", "genus"],
-	  ["!has", "genus:de"]
-        ],
-        "layout":{
-           "icon-image":"tree-circle-gray",
-           "icon-anchor": "center",
-           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.3], [20, 0.7]]},
-           "icon-allow-overlap": true,
-           "visibility":"visible"
-        },
-        "minzoom":12
-      },
-      {
-        "id": "Tree symbols if named",
-        "type": "symbol",
-        "source": "openmaptiles",
-        "source-layer": "natural",
-        "filter": [
-          "all",
-          ["==", "class", "tree"],
-	  [
-		"any",
-	  	["has", "species"],
-	  	["has", "species:de"],
-	  	["has", "genus"],
-	  	["has", "genus:de"]
-	  ]
-        ],
-        "layout":{
-           "icon-image":"tree-circle",
-           "icon-anchor": "center",
-           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.4], [20, 0.8]]},
-           "icon-allow-overlap": true,
-           "visibility":"visible"
-        },
-        "minzoom":12
-      },
-      {
-        "id": "Tree name",
-        "type": "symbol",
-        "source": "openmaptiles",
-        "source-layer": "natural",
-        "filter": [
-          "all",
-          ["==", "class", "tree"]
-        ],
-        "layout":{
-           "text-font":[
-              "Noto Sans Bold"
-           ],
-           "text-field": ["coalesce", ["get", "name"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"], ["get", "description"]],
-           "text-size": {"base": 1, "stops": [[16, 5], [18, 8], [20, 15]]},
-           "text-max-width":6.25,
-           "text-transform":"uppercase",
-	   "text-offset":[0, 1.6],
-           "text-allow-overlap": true,
-           "visibility":"visible"
-        },
-        "paint":{
-           "text-halo-blur":1,
-           "text-color":"rgb(40,180,0)",
-           "text-halo-width":2,
-           "text-halo-color":"rgba(255,255,255,0.8)"
-        },
-        "minzoom":16
-      },
-      {
-        "id": "Tree taxon",
-        "type": "symbol",
-        "source": "openmaptiles",
-        "source-layer": "natural",
-        "filter": [
-          "all",
-          ["==", "class", "tree"]
-        ],
-        "layout":{
-           "text-font":[
-              "Noto Sans Bold"
-           ],
-           "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "start_date"]],
-           "text-size": {"base": 1, "stops": [[18, 4], [20, 12]]},
-           "text-allow-overlap": true,
-	   "text-offset": {"base": 1, "stops": [[18, [0, 4.5]],[19, [0, 3.6]], [20, [0, 4]]]},
-           "visibility":"visible"
-        },
-        "paint":{
-           "text-color":"#976"
-        },
-        "minzoom":18
-      },
-      {
-        "id": "Tree third line",
-        "type": "symbol",
-        "source": "openmaptiles",
-        "source-layer": "natural",
-        "filter": [
-          "all",
-          ["==", "class", "tree"],
-          ["has", "taxon:cultivar"]
-        ],
-        "layout":{
-           "text-font":[
-              "Noto Sans Bold"
-           ],
-           "text-field": "{start_date}",
-           "text-size": {"base": 1, "stops": [[18, 4], [20, 12]]},
-           "text-allow-overlap": true,
-	   "text-offset": {"base": 1, "stops": [[18, [0, 6.5]],[19, [0, 5.6]], [20, [0, 6]]]},
-           "visibility":"visible"
-        },
-        "paint":{
-           "text-color":"#976"
-        },
-        "minzoom":18
       }
    ]
 }

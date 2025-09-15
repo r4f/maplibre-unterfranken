@@ -261,6 +261,17 @@ function node_function()
 		if species == "Juglans regia" then display_name = "Walnuss" end
 
 		Attribute("name", display_name)
+
+		local symbol = nil
+		if display_name == "Sauerkirsche" or display_name == "Süßkirsche" then symbol = "cherry" end
+		if display_name == "Apfel" then symbol = "apple" end
+		if display_name == "Walnuss" then symbol = "walnut" end
+		if display_name == "Birne" then symbol = "pear" end
+		if display_name == "Pflaume" then symbol = "plum" end
+		if symbol ~= nil then
+			Attribute("symbol", symbol)
+		end
+
 	end
 
 end
