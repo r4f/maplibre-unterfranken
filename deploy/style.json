@@ -4971,8 +4971,8 @@
         ],
         "layout":{
            "icon-image":"tree-circle",
-           "icon-anchor": "bottom",
-           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.3], [20, 0.8]]},
+           "icon-anchor": "center",
+           "icon-size": {"base": 1, "stops": [[12, 0.2], [18, 0.4], [20, 0.8]]},
            "icon-allow-overlap": true,
            "visibility":"visible"
         },
@@ -4992,10 +4992,10 @@
               "Noto Sans Bold"
            ],
            "text-field": ["coalesce", ["get", "name"], ["get", "species:de"], ["get", "species"], ["get", "genus:de"], ["get", "genus"], ["get", "description"]],
-           "text-size": {"base": 1, "stops": [[18, 5], [20, 13]]},
+           "text-size": {"base": 1, "stops": [[16, 5], [18, 8], [20, 15]]},
            "text-max-width":6.25,
            "text-transform":"uppercase",
-	   "text-offset":[0, 1],
+	   "text-offset":[0, 1.6],
            "text-allow-overlap": true,
            "visibility":"visible"
         },
@@ -5005,7 +5005,7 @@
            "text-halo-width":2,
            "text-halo-color":"rgba(255,255,255,0.8)"
         },
-        "minzoom":18
+        "minzoom":16
       },
       {
         "id": "Tree taxon",
@@ -5020,10 +5020,35 @@
            "text-font":[
               "Noto Sans Bold"
            ],
-           "text-field": "{taxon:cultivar}",
+           "text-field": ["coalesce", ["get", "taxon:cultivar"], ["get", "start_date"]],
            "text-size": {"base": 1, "stops": [[18, 4], [20, 12]]},
            "text-allow-overlap": true,
-	   "text-offset":[0, 2.4],
+	   "text-offset": {"base": 1, "stops": [[18, [0, 4.5]],[19, [0, 3.6]], [20, [0, 4]]]},
+           "visibility":"visible"
+        },
+        "paint":{
+           "text-color":"#976"
+        },
+        "minzoom":18
+      },
+      {
+        "id": "Tree third line",
+        "type": "symbol",
+        "source": "openmaptiles",
+        "source-layer": "natural",
+        "filter": [
+          "all",
+          ["==", "class", "tree"],
+          ["has", "taxon:cultivar"]
+        ],
+        "layout":{
+           "text-font":[
+              "Noto Sans Bold"
+           ],
+           "text-field": "{start_date}",
+           "text-size": {"base": 1, "stops": [[18, 4], [20, 12]]},
+           "text-allow-overlap": true,
+	   "text-offset": {"base": 1, "stops": [[18, [0, 6.5]],[19, [0, 5.6]], [20, [0, 6]]]},
            "visibility":"visible"
         },
         "paint":{
