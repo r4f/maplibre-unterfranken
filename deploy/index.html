@@ -80,6 +80,17 @@
 		[10.905, 50.556],
 	]
     });
+
+    // Add geolocate control to the map.
+    map.addControl(
+        new maplibregl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+        })
+    );
+
     map.on('click', 'Tree symbols if named', function(e) {
         // e.features contains all features at the click location
         if (e.features.length > 0) {
