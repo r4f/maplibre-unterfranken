@@ -33,7 +33,7 @@ jobs:
         wget https://download.geofabrik.de/europe/germany/bayern/unterfranken-latest.osm.pbf
     - name: Generate pmtiles
       run: |
-        /usr/src/app/tilemaker --input unterfranken-latest.osm.pbf --output unterfranken.pmtiles
+        /usr/src/app/tilemaker --bbox 9.972,49.768,10.04,49.794 --input unterfranken-latest.osm.pbf --output unterfranken.pmtiles
         mv unterfranken.pmtiles deploy/map.pmtiles.gz
     - name: Upload static files as artifact
       id: deployment
