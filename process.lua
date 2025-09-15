@@ -222,17 +222,12 @@ function node_function()
 		-- "species"=="Malus"
 		-- "Kulturapfel" -> "Apfel"
 
-		local display_name = ""
+		local display_name = nil
 		local species = Find("species")
 		local species_de = Find("species:de")
 		local genus = Find("genus")
 		local genus_de = Find("genus:de")
 		-- display_name = taxon_cultibar or species_de or species or genus_de or genus
-		if species_de ~= "" then display_name = species_de
-		elseif species ~= "" then display_name = species
-		elseif genus_de ~= "" then display_name = genus_de
-		elseif genus ~= "" then display_name = genus
-		end
 
 		for _,attr in ipairs(treeAttributes) do
 			if Holds(attr) then
@@ -242,8 +237,10 @@ function node_function()
 			end
 		end
 
-		if display_name == "Malus" or display_name == "Kulturapfel" or display_name == "Malus domestica" then
-			display_name = "Apfel"
+		if species_de ~= "" then
+			display_name = species_de
+		elseif genus_de ~= "" then
+			display_name = genus_de
 		end
 
 		if species == "Prunus cerasus" then display_name = "Sauerkirsche" end
@@ -259,15 +256,82 @@ function node_function()
 		if species == "Cydonia vulgaris" then display_name = "Quitte" end
 		if genus == "Juglans" then display_name = "Walnuss" end
 		if species == "Juglans regia" then display_name = "Walnuss" end
+		if species == "Prunus persica" then display_name = "Pfirsich" end
 
-		Attribute("name", display_name)
+		if genus_de == "Kirsche" then display_name = "Kirsche" end
+
+		if display_name == "Kulturapfel" then
+			display_name = "Apfel"
+		end
+
+		if display_name == nil then
+		  if species == "Acer pseudoplatanus" then display_name = "Berg-Ahorn"
+			elseif species == "Malus domestica" then display_name = "Apfel"
+			elseif species == "Acer platanoides" then display_name = "Spitzahorn"
+			elseif species == "Salix babylonica" then display_name = "Trauerweide"
+			elseif species == "Quercus robur" then display_name = "Stileiche"
+			elseif species == "Tilia cordata" then display_name = "Winterlinde"
+			elseif species == "Tilia platyphyllos" then display_name = "Sommerlinde"
+			elseif species == "Betula pendula" then display_name = "Hänge-Birke"
+			elseif species == "Aesculus hippocastanum" then display_name = "Rosskastanie"
+			elseif species == "Fagus sylvatica" then display_name = "Rotbuche"
+			elseif species == "Platanus x acerifolia" then display_name = "Ahornblättrige Platane"
+			elseif species == "Platanus × hispanica" then display_name = "Ahornblättrige Platane"
+			elseif species == " Maclura pomifera" then display_name = "Milchorangenbaum"
+			elseif species == "Castanea sativa" then display_name = "Edelkastanie"
+			elseif species == "Carpinus betulus" then display_name = "Hainbuche"
+			elseif species == "Taxus baccata" then display_name = "Eibe"
+			elseif species == "Robinia pseudoacacia" then display_name = "Robinie"
+			elseif species == "Pyrus calleryana" then display_name = "Birne (Pyrus calleryana)"
+			elseif species == "Ailanthus altissima" then display_name = "Götterbaum"
+			elseif species == "Morus rubra" then display_name = "Rote Maulbeere"
+			elseif species == "Sorbus aucuparia" then display_name = "Vogelbeere (Eberesche)"
+			elseif species == "Populus nigra 'Italica'" then display_name = "Spitzpappel"
+			elseif species == "Ficus carica" then display_name = "Feige"
+			elseif species == "Ulmus minor" then display_name = "Feldulme"
+			elseif species == "Mespilus germanica" then display_name = "Mispel"
+			elseif species == "Liquidambar styraciflua" then display_name = "Amerikanischer Amberbaum"
+			elseif genus == "Liquidambar" then display_name = "Amberbaum"
+			elseif genus == "Sorbus" then display_name = "Mehlbeere"
+			elseif genus == "Ulmus" then display_name = "Ulme"
+			elseif genus == "Betula" then display_name = "Birke"
+			elseif genus == "Salix" then display_name = "Weide"
+			elseif genus == "Tilia" then display_name = "Linde"
+			elseif genus == "Quercus" then display_name = "Eiche"
+			elseif species == "Quercus" then display_name = "Eiche"
+			elseif genus == "Aesculus" then display_name = "Rosskastanie"
+			elseif genus == "Platanus" then display_name = "Platane"
+			elseif genus == "Castanea" then display_name = "Kastanie"
+			elseif species == "Castanea" then display_name = "Kastanie"
+			elseif genus == "Acer" then display_name = "Ahorn"
+			elseif genus == "Fagus" then display_name = "Buche"
+			elseif genus == "Populus" then display_name = "Pappel"
+			elseif genus == "Fraxinus" then display_name = "Esche"
+			elseif genus == "Picea" then display_name = "Fichte"
+			elseif genus == "Malus" then display_name = "Apfel"
+			elseif genus == "Magnolia" then display_name = "Magnolie"
+			elseif genus == "Ficus" then display_name = "Feige"
+			elseif genus == "Cydonia" then display_name = "Quitte"
+			elseif genus == "Taxus" then display_name = "Eibe"
+			elseif species ~= "" then display_name = species
+			elseif genus ~= "" then display_name = genus
+			end
+		end
+
+		if display_name ~= nil then
+			Attribute("display_name", display_name)
+		end
 
 		local symbol = nil
-		if display_name == "Sauerkirsche" or display_name == "Süßkirsche" then symbol = "cherry" end
+		if display_name == "Kirsche" or display_name == "Sauerkirsche" or display_name == "Süßkirsche" then symbol = "cherry" end
 		if display_name == "Apfel" then symbol = "apple" end
 		if display_name == "Walnuss" then symbol = "walnut" end
 		if display_name == "Birne" then symbol = "pear" end
 		if display_name == "Pflaume" then symbol = "plum" end
+		if display_name == "Pfirsich" then symbol = "peach" end
+		if display_name == "Feige" then symbol = "fig" end
+		-- if display_name == "Holunder" then symbol = "sambucus" end
+		if display_name == "Quitte" then symbol = "quince" end
 		if symbol ~= nil then
 			Attribute("symbol", symbol)
 		end

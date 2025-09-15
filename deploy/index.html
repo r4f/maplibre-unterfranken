@@ -26,6 +26,9 @@
 	"pear",
 	"plum",
 	"walnut",
+	"peach",
+	"quince",
+	"fig",
     ]
     for (const fruit of fruit_images) {
       fetch(`images/${fruit}.svg`)
@@ -75,10 +78,10 @@
         style: 'style.json', // style URL
         center: [10.0, 49.78], // starting position [lng, lat]
         zoom: 14.5, // starting zoom
-        maxBounds: [
-		[9.093, 49.497],
-		[10.905, 50.556],
-	]
+        //maxBounds: [
+	//	[9.093, 49.497],
+	//	[10.905, 50.556],
+	//]
     });
 
     // Add geolocate control to the map.
@@ -96,9 +99,12 @@
         if (e.features.length > 0) {
             const feature = e.features[0];
             // Build HTML for popup from feature properties
-            let html = '<h3>' + (feature.properties['name'] || 'Tree') + '</h3>';
+            let html = '<h3>' + (feature.properties['display_name'] || 'Baum') + '</h3>';
             html += '<ul>';
             for (const key in feature.properties) {
+		if ((key === 'display_name') || (key === 'class')) {
+			continue
+		}
                 html += `<li><b>${key}</b>: ${feature.properties[key]}</li>`;
             }
             html += '</ul>';
