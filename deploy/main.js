@@ -1,0 +1,104 @@
+const protocol = new pmtiles.Protocol();
+maplibregl.addProtocol("pmtiles", protocol.tile);
+
+fruit_images = [
+    "apple",
+    "cherry",
+    "pear",
+    "plum",
+    "walnut",
+    "peach",
+    "quince",
+    "fig",
+]
+for (const fruit of fruit_images) {
+  fetch(`images/${fruit}.svg`)
+  .then(response => response.text())
+  .then(svgText => {
+    // Convert SVG text to an image object
+    const svg = new Blob([svgText], {type: 'image/svg+xml'});
+    const url = URL.createObjectURL(svg);
+    const img = new Image();
+    img.onload = function() {
+    	map.addImage(fruit, img);
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+  });
+}
+
+fetch('images/Circled_dot.svg')
+.then(response => response.text())
+.then(svgText => {
+  // Convert SVG text to an image object
+  const svg = new Blob([svgText], {type: 'image/svg+xml'});
+  const url = URL.createObjectURL(svg);
+  const img = new Image();
+  img.onload = function() {
+    map.addImage('tree-circle', img);
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
+});
+fetch('images/Circled_dot_gray.svg')
+.then(response => response.text())
+.then(svgText => {
+  // Convert SVG text to an image object
+  const svg = new Blob([svgText], {type: 'image/svg+xml'});
+  const url = URL.createObjectURL(svg);
+  const img = new Image();
+  img.onload = function() {
+    map.addImage('tree-circle-gray', img);
+    URL.revokeObjectURL(url);
+  };
+  img.src = url;
+});
+
+var map = new maplibregl.Map({
+    container: 'map', // container id
+    style: 'style.json', // style URL
+    center: [10.0, 49.78], // starting position [lng, lat]
+    zoom: 14.5, // starting zoom
+    maxBounds: [
+    //	[9.093, 49.497], [10.905, 50.556], // Unterfranken
+        [9.972,49.768],[10.04,49.794] // Gerbrunn
+    ]
+});
+
+// Add geolocate control to the map.
+map.addControl(
+    new maplibregl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    })
+);
+
+map.on('click', 'Tree symbols if named', function(e) {
+    // e.features contains all features at the click location
+    if (e.features.length > 0) {
+        const feature = e.features[0];
+        // Build HTML for popup from feature properties
+        let html = '<h3>' + (feature.properties['display_name'] || 'Baum') + '</h3>';
+        html += '<ul>';
+        for (const key in feature.properties) {
+    	if ((key === 'display_name') || (key === 'class')) {
+    		continue
+    	}
+            html += `<li><b>${key}</b>: ${feature.properties[key]}</li>`;
+        }
+        html += '</ul>';
+        // Show popup at clicked location
+        new maplibregl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(html)
+            .addTo(map);
+    }
+});
+map.on('mouseenter', 'Tree symbols if named', function() {
+    map.getCanvas().style.cursor = 'pointer';
+});
+map.on('mouseleave', 'Tree symbols if named', function() {
+    map.getCanvas().style.cursor = '';
+});
