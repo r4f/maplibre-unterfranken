@@ -74,6 +74,10 @@ map.addControl(
         trackUserLocation: true
     })
 );
+map.addControl(new maplibregl.FullscreenControl());
+
+let nav = new maplibregl.NavigationControl();
+map.addControl(nav, 'top-right');
 
 map.on('click', 'Tree symbols if named', function(e) {
     // e.features contains all features at the click location
